@@ -4,7 +4,7 @@ import string
 
 class Frecuencias: 
     def frecuencias(dataIn):
-        global stopwords, data, frecuencia_palabras
+        global stopwords, data, frecuencia_palabras, mayor_frecuencia
         data = dataIn 
         nltk.download('punkt')
         nltk.download('stopwords')
@@ -26,3 +26,6 @@ class Frecuencias:
                 
         #Frecuencia de palabras
         frecuencia_palabras = nltk.FreqDist(nltk.word_tokenize(formatear_texto))
+        mayor_frecuencia = max(frecuencia_palabras.values())
+        for word in frecuencia_palabras.keys():
+            frecuencia_palabras[word] = (frecuencia_palabras[word] / mayor_frecuencia)
